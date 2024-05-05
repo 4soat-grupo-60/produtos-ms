@@ -1,12 +1,7 @@
 import { Class } from "type-fest";
-import CPFExistsError from "../../domain/error/CPFExistsError";
-import EmailExistsError from "../../domain/error/EmailExistsError";
-import { InvalidEmailError } from "../../domain/error/InvalidEmailError";
-import { InvalidCPFError } from "../../domain/error/InvalidCPFError";
 import { InvalidNameError } from "../../domain/error/InvalidNameError";
 import RecordNotFoundError from "../../domain/error/RecordNotFoundError";
 import InvalidCategoryError from "../../domain/error/InvalidCategoryError";
-import InvalidOrderStatusError from "../../domain/error/InvalidOrderStatusError";
 import ProductInactiveError from "../../domain/error/ProductInactiveError";
 
 const HTTP_STATUS_BAD_REQUEST = 400;
@@ -18,16 +13,11 @@ export default class APIErrorHandler {
     const errors = new Map<Class<any>, number>();
 
     // Conflict errors
-    errors.set(CPFExistsError, HTTP_STATUS_CONFLICT);
-    errors.set(EmailExistsError, HTTP_STATUS_CONFLICT);
     errors.set(ProductInactiveError, HTTP_STATUS_CONFLICT);
 
     // Bad request errors
-    errors.set(InvalidEmailError, HTTP_STATUS_BAD_REQUEST);
-    errors.set(InvalidCPFError, HTTP_STATUS_BAD_REQUEST);
     errors.set(InvalidNameError, HTTP_STATUS_BAD_REQUEST);
     errors.set(InvalidCategoryError, HTTP_STATUS_BAD_REQUEST);
-    errors.set(InvalidOrderStatusError, HTTP_STATUS_BAD_REQUEST);
 
     // Not Found
     errors.set(RecordNotFoundError, HTTP_STATUS_NOT_FOUND);

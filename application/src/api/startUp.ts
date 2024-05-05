@@ -3,13 +3,11 @@ import * as express from "express";
 import * as bodyParser from "body-parser";
 import * as cors from "cors";
 import * as compression from "compression";
-import IAppRoute from "../interfaces/IAppRoute";
-import OrderRoute from "./routes/OrderRoute";
-import ProductRoute from "./routes/ProductRoute";
-import OrderQueueRoute from "./routes/OrderQueueRoute";
-import PaymentRoute from "./routes/PaymentRoute";
-import { DbConnection } from "../interfaces/dbconnection";
 import "dotenv/config";
+
+import IAppRoute from "../interfaces/IAppRoute";
+import { DbConnection } from "../interfaces/dbconnection";
+import ProductRoute from "./routes/ProductRoute";
 
 export default class StartUp {
   private dbConnection: DbConnection;
@@ -41,12 +39,7 @@ export default class StartUp {
   }
 
   initRoutes() {
-    let routes: IAppRoute[] = [
-      new OrderRoute(this.dbConnection),
-      new ProductRoute(this.dbConnection),
-      new OrderQueueRoute(this.dbConnection),
-      new PaymentRoute(this.dbConnection),
-    ];
+    let routes: IAppRoute[] = [new ProductRoute(this.dbConnection)];
 
     let port = process.env.PORT || 8080;
 
@@ -57,12 +50,6 @@ export default class StartUp {
     this.app.route("/ping").get((req, res) => {
       res.send("pong");
     });
-
-    // this.app.use(
-    //   "/api/docs",
-    //   swaggerUi.serve,
-    //   swaggerUi.setup(this.swaggerDocument, null, null)
-    // );
 
     this.app.listen(port, () => {
       console.log(`App está executando na porta ${port}`);

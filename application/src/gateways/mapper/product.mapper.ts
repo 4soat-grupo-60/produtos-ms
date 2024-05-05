@@ -8,7 +8,7 @@ export default class ProductMapper {
       d.name,
       d.description,
       d.category,
-      d.price.toNumber(),
+      d.price,
       d.active,
       d.created_at,
       d.updated_at

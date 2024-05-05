@@ -1,6 +1,5 @@
 import { Product } from "../../domain/entities/product";
 import { Category } from "../../domain/value_object/category";
-import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 import RecordNotFoundError from "../../domain/error/RecordNotFoundError";
 import { IProductGateway } from "../../interfaces/gateways";
 import { DbConnection } from "../../interfaces/dbconnection";
