@@ -4,7 +4,7 @@ import ProductModel from "../model/product.model";
 export default class ProductMapper {
   static map(d: ProductModel): Product {
     return Product.New(
-      d.id,
+      d._id.toString(),
       d.name,
       d.description,
       d.category,

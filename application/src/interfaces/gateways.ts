@@ -7,5 +7,5 @@ export interface IProductGateway {
   getProducts(): Promise<Array<Product>>;
   saveProduct(product: Product): Promise<Product>;
   updateProduct(product: Product): Promise<Product>;
-  deleteProduct(id: number): Promise<void>;
+  deleteProduct(id: string): Promise<void>;
 }

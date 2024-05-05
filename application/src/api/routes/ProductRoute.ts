@@ -53,9 +53,11 @@ export default class ProductRoute implements IAppRoute {
     app.route(this.ROUTE_BASE_PATH + "/:id").put(async (req, res) => {
       try {
         const { name, category, description, price, active } = req.body;
+        const productId = String(req.params.id);
 
         const product = new Product(name, category, description, price, active);
-        product.setId(+req.params.id);
+        product.setId(productId);
+
         const updatedProduct = await ProductController.updateProduct(
           product,
           this.dbConnection
@@ -69,10 +71,9 @@ export default class ProductRoute implements IAppRoute {
 
     app.route(this.ROUTE_BASE_PATH + "/:id").delete(async (req, res) => {
       try {
-        await ProductController.deleteProduct(
-          +req.params.id,
-          this.dbConnection
-        );
+        const productId = String(req.params.id);
+
+        await ProductController.deleteProduct(productId, this.dbConnection);
 
         res.sendStatus(204);
       } catch (e) {

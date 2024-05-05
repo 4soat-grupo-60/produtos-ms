@@ -1,9 +1,11 @@
+import { ObjectId } from "mongodb";
+
 export default interface ProductModel {
-  id: number;
+  _id: ObjectId;
   name: string;
+  price: number;
   description: string;
   category: string;
-  price: number;
   active: boolean;
   created_at?: Date;
   updated_at?: Date;

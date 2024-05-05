@@ -15,7 +15,7 @@ export class Category {
       category !== Category.BEBIBA &&
       category !== Category.SOBREMESA
     ) {
-      validate("Categoria inválida");
+      validate("Categória inválida");
     }
 
     this.category = category;

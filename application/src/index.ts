@@ -1,6 +1,6 @@
-import prisma from "./external/prismaClient";
+import mongo from "./external/mongoClient";
 import StartUp from "./api/startUp";
 
-const prismaConnection = prisma;
+const mongoConnection = mongo;
 
-new StartUp(prismaConnection);
+new StartUp(mongoConnection);

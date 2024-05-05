@@ -44,7 +44,7 @@ export class ProductController {
     return ProductPresenter.map(updatedProduct);
   }
 
-  static async deleteProduct(productId: number, dbConnection: DbConnection) {
+  static async deleteProduct(productId: string, dbConnection: DbConnection) {
     const productGateway = new ProductGateway(dbConnection);
     return await ProductUseCases.delete(productId, productGateway);
   }

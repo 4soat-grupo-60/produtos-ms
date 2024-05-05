@@ -1,3 +1,3 @@
-import { PrismaClient } from "@prisma/client";
+import { MongoClient } from "mongodb";
 
-export interface DbConnection extends PrismaClient {}
+export interface DbConnection extends MongoClient {}

@@ -30,7 +30,7 @@ export class ProductUseCases {
   }
 
   static async delete(
-    id: number,
+    id: string,
     productGateway: IProductGateway
   ): Promise<void> {
     return await productGateway.deleteProduct(id);
