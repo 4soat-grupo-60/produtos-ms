@@ -5,18 +5,10 @@
     "outDir": "dist",
     "incremental": true,
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "plugins": [
-      {
-        "transform": "ts-auto-mock/transformer",
-        "cacheBetweenTests": false
-      }
-    ],
-    "typeRoots": ["../node_modules/@types"]
+    "emitDecoratorMetadata": true
   },
-  "include": ["**/*.ts", "*.ts", "babel.config.js"],
+  "include": ["**/*.ts", "*.ts"],
   "exclude": ["node_modules"],
   "buildOnSave": true,
   "compileOnSave": true
 }
-
