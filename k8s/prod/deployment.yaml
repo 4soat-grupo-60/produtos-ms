@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: totem-api
-  namespace: totem
+  name: produtos-ms
+  namespace: produtos-ms
   labels:
-    app: totem-api
+    app: produtos-ms
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: totem-api
+      app: produtos-ms
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -18,35 +18,35 @@ spec:
   template:
     metadata:
       labels:
-        app: totem-api
+        app: produtos-ms
     spec:
       containers:
-      - name: totem-api
+      - name: produtos-ms
         image: **LATEST_IMAGE
         imagePullPolicy: Always
         envFrom:
         - configMapRef:
-            name: totem-configmap
+            name: produtos-ms-configmap
         env:
           - name: DB_HOST
             valueFrom:
               secretKeyRef:
-                name: totem-secret
+                name: produtos-ms-secret
                 key: host
           - name: DB_PORT
             valueFrom:
               secretKeyRef:
-                name: totem-secret
+                name: produtos-ms-secret
                 key: port
           - name: DB_USERNAME
             valueFrom:
               secretKeyRef:
-                name: totem-secret
+                name: produtos-ms-secret
                 key: username
           - name: DB_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: totem-secret
+                name: produtos-ms-secret
                 key: password
         ports:
         - containerPort: 8080

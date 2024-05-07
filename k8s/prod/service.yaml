@@ -2,9 +2,9 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    run: totem-api
-  name: totem-api
-  namespace: totem
+    run: produtos-ms
+  name: produtos-ms
+  namespace: produtos-ms
 spec:
   type: NodePort
   ports:
@@ -13,14 +13,14 @@ spec:
       targetPort: 8080
       nodePort: 32222
   selector:
-    app: totem-api
+    app: produtos-ms
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: totem-api
-  namespace: totem
+  name: produtos-ms
+  namespace: produtos-ms
   annotations:
     service.beta.kubernetes.io/aws-load-balancer-type: nlb
     service.beta.kubernetes.io/aws-load-balancer-internal: "true"
@@ -30,4 +30,4 @@ spec:
       protocol: TCP
   type: LoadBalancer
   selector:
-    app: totem-api
+    app: produtos-ms
