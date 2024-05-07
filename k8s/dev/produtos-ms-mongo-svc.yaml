@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    run: produtos-ms-mongo
+  name: produtos-ms-mongo
+  namespace: produtos-ms
+spec:
+  type: NodePort
+  ports:
+    - port: 27017
+      protocol: TCP
+      targetPort: 27017
+      nodePort: 32438
+  selector:
+    app: produtos-ms-mongo
