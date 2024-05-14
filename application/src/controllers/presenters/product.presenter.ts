@@ -3,7 +3,9 @@ import { ProductResponse } from "../model/product.response.model";
 
 export class ProductPresenter {
   static mapList(data: Product[]): ProductResponse[] {
-    return data.map(ProductPresenter.map);
+    if (data === null) return null;
+
+    return data?.map(ProductPresenter?.map);
   }
 
   static map(data: Product): ProductResponse {
