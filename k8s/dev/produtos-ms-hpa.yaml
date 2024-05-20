@@ -1,12 +1,12 @@
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
 metadata:
-    name: totem-api
-    namespace: totem
+    name: produtos-ms
+    namespace: produtos-ms
 spec:
     scaleTargetRef:
         kind: Deployment
-        name: totem-api
+        name: produtos-ms
         apiVersion: apps/v1
     minReplicas: 1
     maxReplicas: 10

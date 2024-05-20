@@ -1,3 +1,5 @@
-FROM postgres:16.0-alpine
+FROM mongo
 
 WORKDIR "/application"
+
+EXPOSE 27017

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: produtos-ms-configmap
+  namespace: produtos-ms
+data:
+  MONGO_INITDB_ROOT_USERNAME: totem
+  MONGO_INITDB_ROOT_PASSWORD: totem
+  MONGO_DB: produtos-ms-mongo
+  DATABASE_URL: "mongodb://produtos-ms-mongo:27017/produtos-ms"
+  PORT: "8080"

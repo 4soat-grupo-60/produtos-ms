@@ -1,41 +1,32 @@
 version: "3.1"
 services:
-  totem-postgres:
+  produtos-ms-mongo:
       build:
         context: .
         dockerfile: docker/database/Dockerfile
-      container_name: totem-postgres
+      container_name: produtos-ms-mongo
       volumes:
         - ./docker/database/postgres:/application/
-        - ./docker/database/seeder.sql:/application/seeder.sql
-        - ./docker/database/postgresql.conf:/var/lib/postgresql/data/postgresql.conf
       environment:
-        - POSTGRES_USER=totem
-        - POSTGRES_PASSWORD=totem
-        - POSTGRES_DB=totem
-        - PGDATA=/application/postgres
+        - MONGO_INITDB_ROOT_USERNAME=totem
+        - MONGO_INITDB_ROOT_PASSWORD=totem
       ports:
-        - "5432:5432"
+        - "27017:27017"
       networks:
         - default
 
-  totem-api:
+  produtos-ms:
     build:
       context: .
       dockerfile: docker/node/Dockerfile
-    container_name: totem-api
-    environment:
-      - DATABASE_URL=postgresql://totem:totem@totem-postgres:5432/totem
-      - PORT=8080
+    container_name: produtos-ms
     volumes:
       - ./docker/bin:/var/bin
     command: sh -c "npm install && chown -R www-data:www-data /var/www"
-    depends_on: 
-      - totem-postgres
     ports:
       - "3000:3000"
     links:
-      - totem-postgres
+      -   produtos-ms-mongo
     networks:
       - default
 

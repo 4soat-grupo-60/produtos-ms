@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: totem-configmap
-  namespace: totem
+  name: produtos-ms-configmap
+  namespace: produtos-ms
 data:
   PORT: "8080"

@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: totem-api
-  namespace: totem
+  name: produtos-ms
+  namespace: produtos-ms
   labels:
-    app: totem-api
+    app: produtos-ms
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: totem-api
+      app: produtos-ms
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -18,15 +18,15 @@ spec:
   template:
     metadata:
       labels:
-        app: totem-api
+        app: produtos-ms
     spec:
       containers:
-      - name: totem-api
+      - name: produtos-ms
         envFrom:
         - configMapRef:
        # - secretRef:
-            name: totem-configmap
-        image: andrauss/tech_challenge_4soat_g60:latest
+            name: produtos-ms-configmap
+        image: adrianoelima/produtos-ms:1.0.0
         imagePullPolicy: Always
         ports:
         - containerPort: 3000

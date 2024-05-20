@@ -18,13 +18,13 @@ ADD application/.env.example /var/www/.env
 RUN echo "export $(egrep -v '^#' .env | xargs)" >> /root/.bashrc
 RUN source /root/.bashrc
 
+ADD application/index.js /var/www/index.js
 ADD application/package.json /var/www/package.json
 ADD application/package-lock.json /var/www/package-lock.json
 ADD application/tsconfig.json /var/www/tsconfig.json
 
-RUN npx prisma generate --schema=./src/external/prisma/schema.prisma
+#RUN npx prisma generate --schema=./src/external/prisma/schema.prisma
 RUN npm install --loglevel verbose
-RUN #./node_modules/.bin/tsc
 RUN tsc
 
 ADD docker/bin /var/bin
