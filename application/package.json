@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "server": "node dist/adapters/driver/api/program.js",
-    "dev": "nodemon ./src/index.ts",
+    "dev": "set MONGODB_URI=mongodb://totem:totem@localhost:27017&& set PORT=3001 && nodemon ./src/index.ts",
     "test": "jest --collectCoverage",
     "test-watch": "jest --watchAll --collectCoverage",
     "test-bdd": "cucumber-js"

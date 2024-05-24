@@ -1,30 +1,37 @@
 version: "3.1"
 services:
   produtos-ms-mongo:
-      build:
-        context: .
-        dockerfile: docker/database/Dockerfile
+#      build:
+#        context: .
+#        dockerfile: docker/database/Dockerfile
+#      container_name: produtos-ms-mongo
+      image: mongo:latest
       container_name: produtos-ms-mongo
       volumes:
-        - ./docker/database/postgres:/application/
+        - ./docker/database/mongo:/data/db/
       environment:
         - MONGO_INITDB_ROOT_USERNAME=totem
         - MONGO_INITDB_ROOT_PASSWORD=totem
+        - MONGO_INITDB_DATABASE=totem_produtos
       ports:
         - "27017:27017"
       networks:
         - default
 
   produtos-ms:
-    build:
-      context: .
-      dockerfile: docker/node/Dockerfile
-    container_name: produtos-ms
+#    build:
+#      context: .
+#      dockerfile: docker/node/Dockerfile
+#    container_name: produtos-ms
+    image: andrauss/produtos-ms:latest
     volumes:
       - ./docker/bin:/var/bin
-    command: sh -c "npm install && chown -R www-data:www-data /var/www"
+    environment:
+      - PORT=3000
+      - MONGODB_URI=mongodb://totem:totem@produtos-ms-mongo:27017
+#    command: sh -c "npm install && chown -R www-data:www-data /var/www"
     ports:
-      - "3000:3000"
+      - "3001:3000"
     links:
       -   produtos-ms-mongo
     networks:

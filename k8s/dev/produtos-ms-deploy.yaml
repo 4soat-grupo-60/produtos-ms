@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: produtos-ms
-  namespace: produtos-ms
+  namespace: totem
   labels:
     app: produtos-ms
 spec:
@@ -26,8 +26,8 @@ spec:
         - configMapRef:
        # - secretRef:
             name: produtos-ms-configmap
-        image: adrianoelima/produtos-ms:1.0.0
-        imagePullPolicy: Always
+        image: andrauss/produtos-ms:latest
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 3000
         resources:
