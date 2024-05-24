@@ -1,11 +1,11 @@
 import * as express from "express";
 
 import IAppRoute from "../../interfaces/IAppRoute";
-import { Product } from "../../domain/entities/product";
-import { Category } from "../../domain/value_object/category";
-import { handleAPIError } from "../error/APIErrorHandler";
-import { DbConnection } from "../../interfaces/dbconnection";
-import { ProductController } from "../../controllers/product.controller";
+import {Product} from "../../domain/entities/product";
+import {Category} from "../../domain/value_object/category";
+import {handleAPIError} from "../error/APIErrorHandler";
+import {DbConnection} from "../../interfaces/dbconnection";
+import {ProductController} from "../../controllers/product.controller";
 
 export default class ProductRoute implements IAppRoute {
   private dbConnection: DbConnection;
@@ -19,8 +19,13 @@ export default class ProductRoute implements IAppRoute {
   setup(app: express.Application): void {
     app.route(this.ROUTE_BASE_PATH).get(async (req, res) => {
       try {
-        const products = await ProductController.getAllProducts(
-          this.dbConnection
+
+        const filterIds = req.params.ids?.split(",")?.map(Number)
+
+        const products = await (
+          filterIds && filterIds.length > 0
+            ? ProductController.getProductsByIds(filterIds, this.dbConnection)
+            : ProductController.getAllProducts(this.dbConnection)
         );
 
         res.status(200).send(products);
@@ -31,7 +36,7 @@ export default class ProductRoute implements IAppRoute {
 
     app.route(this.ROUTE_BASE_PATH).post(async (req, res) => {
       try {
-        const { name, category, description, price, active } = req.body;
+        const {name, category, description, price, active} = req.body;
         const newProduct = new Product(
           name,
           category,
@@ -52,7 +57,7 @@ export default class ProductRoute implements IAppRoute {
 
     app.route(this.ROUTE_BASE_PATH + "/:id").put(async (req, res) => {
       try {
-        const { name, category, description, price, active } = req.body;
+        const {name, category, description, price, active} = req.body;
         const productId = String(req.params.id);
 
         const product = new Product(name, category, description, price, active);
@@ -85,7 +90,7 @@ export default class ProductRoute implements IAppRoute {
       try {
         const category = new Category(
           req.params.category.charAt(0).toUpperCase() +
-            req.params.category.slice(1)
+          req.params.category.slice(1)
         );
 
         const products = await ProductController.getAllProductsByCategory(

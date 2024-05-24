@@ -2,7 +2,7 @@ apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
 metadata:
     name: produtos-ms
-    namespace: produtos-ms
+    namespace: totem
 spec:
     scaleTargetRef:
         kind: Deployment

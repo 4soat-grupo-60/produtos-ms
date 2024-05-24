@@ -1,6 +1,6 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: produtos-ms
+  name: totem
   labels:
-    name: produtos-ms
+    name: totem

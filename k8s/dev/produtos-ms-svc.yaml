@@ -4,7 +4,7 @@ metadata:
   labels:
     run: produtos-ms
   name: produtos-ms
-  namespace: produtos-ms
+  namespace: totem
 spec:
   type: NodePort
   ports:

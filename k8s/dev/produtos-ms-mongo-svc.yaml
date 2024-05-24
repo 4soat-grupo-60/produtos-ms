@@ -4,11 +4,11 @@ metadata:
   labels:
     run: produtos-ms-mongo
   name: produtos-ms-mongo
-  namespace: produtos-ms
+  namespace: totem
 spec:
   type: NodePort
   ports:
-    - port: 27017
+    - port: 80
       protocol: TCP
       targetPort: 27017
       nodePort: 32438

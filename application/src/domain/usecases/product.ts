@@ -14,6 +14,12 @@ export class ProductUseCases {
   ): Promise<Array<Product>> {
     return await productGateway.getProductsByCategory(category);
   }
+  static async listByIds(
+    ids: number[],
+    productGateway: IProductGateway
+  ): Promise<Array<Product>> {
+    return await productGateway.getProductByIDs(ids);
+  }
 
   static async save(
     product: Product,

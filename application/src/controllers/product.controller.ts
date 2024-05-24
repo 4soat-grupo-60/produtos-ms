@@ -11,6 +11,13 @@ export class ProductController {
     const allProducts = await ProductUseCases.list(productGateway);
 
     return ProductPresenter.mapList(allProducts);
+  }  
+  
+  static async getProductsByIds(ids: number[], dbConnection: DbConnection) {
+    const productGateway = new ProductGateway(dbConnection);
+    const allProducts = await ProductUseCases.listByIds(ids, productGateway);
+
+    return ProductPresenter.mapList(allProducts);
   }
 
   static async getAllProductsByCategory(

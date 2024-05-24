@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: produtos-ms-mongo
-  namespace: produtos-ms
+  namespace: totem
   labels:
     app: produtos-ms-mongo
 spec:
@@ -32,7 +32,7 @@ spec:
         - secretRef:
             name: produtos-ms-mongo
         image: mongo
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         workingDir: /application
         #imagePullPolicy: IfNotPresent
         volumeMounts:

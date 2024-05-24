@@ -2,7 +2,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: produtos-ms-mongo
-  namespace: produtos-ms
+  namespace: totem
   labels:
     type: local
 spec:
