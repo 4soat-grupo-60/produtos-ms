@@ -1,11 +1,9 @@
 version: "3.1"
 services:
   produtos-ms-mongo:
-#      build:
-#        context: .
-#        dockerfile: docker/database/Dockerfile
-#      container_name: produtos-ms-mongo
-      image: mongo:latest
+      build:
+        context: .
+        dockerfile: docker/database/Dockerfile
       container_name: produtos-ms-mongo
       volumes:
         - ./docker/database/mongo:/data/db/
@@ -16,34 +14,30 @@ services:
       ports:
         - "27017:27017"
       networks:
-        - default
+        - totem
 
   produtos-ms:
-#    build:
-#      context: .
-#      dockerfile: docker/node/Dockerfile
-#    container_name: produtos-ms
-    image: andrauss/produtos-ms:latest
+    build:
+      context: .
+      dockerfile: docker/node/Dockerfile
+    container_name: produtos-ms
+#    image: andrauss/produtos-ms:latest
     volumes:
       - ./docker/bin:/var/bin
     environment:
       - PORT=3000
       - MONGODB_URI=mongodb://totem:totem@produtos-ms-mongo:27017
-#    command: sh -c "npm install && chown -R www-data:www-data /var/www"
+    command: sh -c "npm install && chown -R www-data:www-data /var/www"
     ports:
       - "3001:3000"
     links:
       -   produtos-ms-mongo
     networks:
-      - default
+      - totem
 
 networks:
-  default:
-    driver: bridge
-    ipam:
-      driver: default
-      config:
-        - subnet: 192.168.2.0/24
+  totem:
+    external: true
 volumes:
   dbdata:
     driver: local
