@@ -8,6 +8,7 @@ import "dotenv/config";
 import IAppRoute from "../interfaces/IAppRoute";
 import { DbConnection } from "../interfaces/dbconnection";
 import ProductRoute from "./routes/ProductRoute";
+import axios from "axios";
 
 export default class StartUp {
   private dbConnection: DbConnection;
@@ -41,14 +42,23 @@ export default class StartUp {
   initRoutes() {
     let routes: IAppRoute[] = [new ProductRoute(this.dbConnection)];
 
-    let port = process.env.PORT || 8080;
+    let port = process.env.PORT || 3000;
 
     for (let route of routes) {
       route.setup(this.app);
     }
 
     this.app.route("/ping").get((req, res) => {
-      res.send("pong");
+      res.send("produtos");
+    });
+
+    this.app.route("/ping-pedidos").get(async (req, res) => {
+      try {
+        const response = await axios.get(`${process.env.ORDER_API_URL}/ping`);
+        res.send(`Response from pedidos-ms: ${response.data}`);
+      } catch (error) {
+        res.status(500).send(`Error: ${error.message}`);
+      }
     });
 
     this.app.listen(port, () => {

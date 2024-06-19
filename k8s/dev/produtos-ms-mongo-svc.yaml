@@ -11,6 +11,6 @@ spec:
     - port: 80
       protocol: TCP
       targetPort: 27017
-      nodePort: 32438
+      nodePort: 32439
   selector:
     app: produtos-ms-mongo

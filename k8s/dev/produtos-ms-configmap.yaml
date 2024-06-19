@@ -9,3 +9,4 @@ data:
   MONGO_DB: produtos-ms-mongo
   MONGODB_URI: "mongodb://totem:totem@produtos-ms-mongo:27017"
   PORT: "3000"
+  ORDER_API_URL: "http://pedidos-ms"
