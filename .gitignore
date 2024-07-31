@@ -4,3 +4,5 @@ docker/database/pgadmin
 docker/database/postgres
 .idea
 .vscode
+.DS_Store
+docker/database/mongo/
