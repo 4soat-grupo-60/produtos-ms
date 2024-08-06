@@ -26,12 +26,14 @@ spec:
           claimName: produtos-ms-mongo
       containers:
       - name: produtos-ms-mongo
-        envFrom:
-        - configMapRef:
-            name: produtos-ms-configmap
-        - secretRef:
-            name: produtos-ms-mongo
         image: mongo
+        env:
+          - name: MONGO_INITDB_ROOT_USERNAME
+            value: totem
+          - name: MONGO_INITDB_ROOT_PASSWORD
+            value: totem
+          - name: MONGO_INITDB_DATABASE
+            value: totem_produtos
         imagePullPolicy: IfNotPresent
         workingDir: /application
         #imagePullPolicy: IfNotPresent

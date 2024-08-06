@@ -4,9 +4,8 @@ metadata:
   name: produtos-ms-configmap
   namespace: totem
 data:
-  MONGO_INITDB_ROOT_USERNAME: totem
-  MONGO_INITDB_ROOT_PASSWORD: totem
-  MONGO_DB: produtos-ms-mongo
+  MONGO_INITDB_ROOT_USERNAME: "totem"
+  MONGO_INITDB_ROOT_PASSWORD: "totem"
   MONGODB_URI: "mongodb://totem:totem@produtos-ms-mongo:27017"
   PORT: "3000"
   ORDER_API_URL: "http://pedidos-ms"

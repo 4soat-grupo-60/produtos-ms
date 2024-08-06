@@ -34,10 +34,11 @@ services:
       -   produtos-ms-mongo
     networks:
       - totem
+      - default
 
 networks:
   totem:
-    external: true
+#    external: true
 volumes:
   dbdata:
     driver: local
